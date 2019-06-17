@@ -7,16 +7,22 @@
 </div>
 <div class="row">
     <div class="container">
-            <div class="card">
-                    <div class="card-image">
-                      <img src="{{ asset('pro.jpg') }}" width="100%" height="450">
-                      <span class="card-title">Card Title</span>
-                    </div>
-                    <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                  </div>
-        
+      @foreach ($app as $apps)
+      <div class="card">
+          <div class="card-image">
+            <img src="{{ asset($apps->image) }}" width="100%" height="450">
+            <span class="card-title">{{ $apps->title }}</span>
+          </div>
+          <div class="card-content">
+            <p>{{ str_limit($apps->content, 150) }} <br/>
+            <span style="float:right"><a href="{{ url('/post', ['id' => $apps->id]) }}">Read More</a></span>
+            </p>
+         </div>
+        </div> 
+      @endforeach
+           
+      {{ $app->links() }}
+
     </div>
 </div>
 @endsection

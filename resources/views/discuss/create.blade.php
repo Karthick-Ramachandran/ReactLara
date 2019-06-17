@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container">
+  @if (Session::has('success'))
+
+      <div class="container">
+                <div class="red center white-text" style="padding:5px; margin:20px;">
+                  {{ Session::get('success') }}
+                </div>
+                </div> 
+  @endif
         @if ( count( $errors ) > 0 )
         @foreach ($errors->all() as $error)
         <div class="container">
@@ -18,11 +26,11 @@
                               <div class="card black darken-1">
                                 <div class="card-content white-text">
                                   <p class=" center card-title">Post</p>
-                                  <form method="POST" autocomplete="off" action="{{ route('login') }}">
+                                  <form method="POST" autocomplete="off" action="{{ route('create.post') }}" enctype="multipart/form-data">
                                       {{ csrf_field() }}
                                     
                                       <div class="input-field">
-                                            <input type="email" class="white-text" id="title" name="title">
+                                            <input type="text" class="white-text" id="title" name="title">
                                             <label for="title">Title</label>
                                             </div>
                                             <div class="file-field input-field">
@@ -35,20 +43,9 @@
                                                     </div>
                                                   </div>
                                                   <div class="input-field">
-                                                        <textarea id="content" class="materialize-textarea white-text"></textarea>
+                                                        <textarea id="content" name="content" class="materialize-textarea white-text"></textarea>
                                                         <label for="content">Content</label>
-                                                        <p class="white-text">
-                                                                <label>
-                                                                  <input name="type" type="radio" value="0" checked />
-                                                                  <span>React</span>
-                                                                </label>
-                                                              </p>
-                                                              <p class="white-text">
-                                                                    <label>
-                                                                      <input name="type" type="radio" value="1" />
-                                                                      <span>Laravel</span>
-                                                                    </label>
-                                                                  </p>
+                                                    
                                                       </div>
                                                           <center> <input type="submit" value="Post" class="btn center white black-text"> </center>
                                   </form>

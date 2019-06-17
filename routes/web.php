@@ -40,3 +40,23 @@ Route::get('/creatediss', [
 Route::get('/create/discussion', [
 'uses' => 'PostController@index'
 ]);
+Route::post('/create/discussion', [
+    'uses' => 'PostController@store',
+    'as' => 'create.post'
+    ]);
+    Route::get('/like/{id}', [
+        'uses' => 'PostController@like',
+        'as' => 'create.like'
+        ]);
+        Route::get('/unlike/{id}', [
+            'uses' => 'PostController@unlike',
+            'as' => 'unlike'
+            ]);
+            Route::post('/comment/{id}', [
+                'uses' => 'PostController@comment',
+                'as' => 'comment'
+                ]);
+    Route::get('/post/{id}', [
+        'uses' => 'PostController@show'
+
+    ]);
